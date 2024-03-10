@@ -45,7 +45,7 @@ const Data = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:4000/data?page=${page}&pageSize=${rowsPerPage}`
+        `https://form-application-using-api.onrender.com/data?page=${page}&pageSize=${rowsPerPage}`
       );
       if (!response.ok) {
         throw new Error("Network Response was nto OK");
@@ -134,7 +134,7 @@ const Data = () => {
       alert('Please select at least one row to send email.');
       return;
     }
-    
+
     const selectedData = data.filter((entry) =>
       selectedRows.includes(entry._id)
     );
