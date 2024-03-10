@@ -95,10 +95,26 @@ app.put("/data/:id", async (req, res) => {
   }
 });
 
-mongoose
-  .connect("mongodb://localhost:27017/form")
-  .then(() => console.log("DB Connected"));
+async function startServer() {
+  try {
+      await mongoose.connect("mongodb://127.0.0.1:27017/form");
+      console.log("DB Connected");
+      
+      // Start the server after the database connection is established
+      app.listen(PORT, () => {
+          console.log(`App running on port ${PORT}`);
+      });
+  } catch (error) {
+      console.error("Error connecting to the database:", error);
+  }
+}
 
-app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}`);
-});
+startServer();
+
+// mongoose
+//   .connect("mongodb://127.0.0.1:27017/form")
+//   .then(() => console.log("DB Connected"));
+
+// app.listen(PORT, () => {
+//   console.log(`App running on port ${PORT}`);
+// });
